@@ -50,7 +50,7 @@ client.on("message", message => {
             let msg = ""
             keys.forEach(key => {
               db.get(key).then(value => {
-                msg += `${key} => ${db.get(keys)}`
+                msg += `${key} => ${db.get(key)}`
               });
               msg += "\n"
             });
