@@ -30,6 +30,10 @@ client.on("message", message => {
         message.reply(`The sum of all the arguments you provided is ${sum}!`);
     }
 
+    else if(command === "name") {
+      message.channel.send(config.fullName)
+    }
+
     else if(command === "link") {
         if(args[0] === "set" && args[1] !== null && args[2] !== null) { 
           db.set(args[1], args[2]).then(() => {
@@ -43,7 +47,14 @@ client.on("message", message => {
         }
         else if(args[0] === "list") {
           db.list().then(keys => {
-            
+            let msg = ""
+            keys.forEach(key => {
+              db.get(key).then(value => {
+                msg += `${key} => ${value}`
+              });
+              msg += "\n"
+            });
+            message.channel.send(msg);
           });
         }
         else {
