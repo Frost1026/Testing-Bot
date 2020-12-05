@@ -47,7 +47,7 @@ client.on("message", message => {
         }
         else if (args[0] === "list") {
           db.list().then(keys => {
-            let msg = ""
+            let msg = "";
             keys.forEach(key => {
               db.get(key).then(value => {
                 msg += `${key} => ${db.get(key)}`
