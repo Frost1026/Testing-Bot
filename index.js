@@ -45,18 +45,18 @@ client.on("message", message => {
             message.channel.send(`The link for ${args[1]} is <${value}>!`);
           })
         }
-        else if(args[0] === "list") {
+        else if (args[0] === "list") {
           db.list().then(keys => {
             let msg = ""
-            keys.forEach(keys => {
-              db.get(keys).then(value => {
-                msg += `${keys} => ${value}`
+            keys.forEach(key => {
+              db.get(key).then(value => {
+                msg += `${key} => ${db.get(keys)}`
               });
               msg += "\n"
             });
             message.channel.send(msg);
           });
-        }
+        }          
         else {
           message.channel.send("oi your command cacat")
         }
