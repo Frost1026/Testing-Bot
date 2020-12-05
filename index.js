@@ -37,7 +37,7 @@ client.on("message", message => {
     else if(command === "link") {
         if(args[0] === "set" && args[1] !== null && args[2] !== null) { 
           db.set(args[1], args[2]).then(() => {
-            message.channel.send(`I saved <${args[1]}> to ${args[0]}`);
+            message.channel.send(`I saved ${args[1]} to ${args[2]}`);
           });
         }
         else if (args[0] === "get") {
@@ -48,9 +48,9 @@ client.on("message", message => {
         else if(args[0] === "list") {
           db.list().then(keys => {
             let msg = ""
-            keys.forEach(key => {
-              db.get(key).then(value => {
-                msg += `${key} => ${value}`
+            keys.forEach(keys => {
+              db.get(keys).then(value => {
+                msg += `${keys} => ${value}`
               });
               msg += "\n"
             });
